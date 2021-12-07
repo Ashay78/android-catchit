@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/catch_me_if_you_can"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/btnPlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/jouer"
+        android:onClick="startGame" />
+
+    <TextView
+        android:id="@+id/text_score"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/textScore"
+        android:textAlignment="center"
+        android:textSize="40sp" />
+
+    <Button
+        android:id="@+id/btnParams"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/game_parameters"
+        android:onClick="startParameters" />
+
+    <Button
+        android:id="@+id/btnHighScore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/high_score"
+        android:onClick="startHighScore"/>
+
+    <Button
+        android:id="@+id/btnQuit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/quit"
+        android:onClick="quit"/>
+
+</LinearLayout>

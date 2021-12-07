@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Name :"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edit_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/text_name"
+        android:hint="@string/name"
+        android:inputType="text"
+        android:minHeight="48dp" />
+
+    <TextView
+        android:id="@+id/text_target"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_name"
+        android:layout_marginTop="10dp"
+        android:text="@string/target"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spinner_target"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_name"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/text_target"
+        android:entries="@array/typeArray"
+        android:minHeight="48dp" />
+
+    <TextView
+        android:id="@+id/text_hunter"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinner_target"
+        android:layout_marginTop="10dp"
+        android:text="@string/hunter"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spinner_hunter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinner_target"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/text_hunter"
+        android:entries="@array/typeArray"
+        android:minHeight="48dp" />
+
+    <TextView
+        android:id="@+id/text_result"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinner_hunter"
+        android:layout_marginTop="10dp"
+        android:text="@string/result"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spinner_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinner_hunter"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/text_result"
+        android:entries="@array/typeArray"
+        android:minHeight="48dp" />
+
+    <TextView
+        android:id="@+id/text_sound"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinner_result"
+        android:layout_marginTop="10dp"
+        android:text="@string/sound"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spinner_sound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinner_result"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/text_sound"
+        android:entries="@array/soundArray"
+        android:minHeight="48dp" />
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinner_sound"
+        android:text="@string/save" />
+
+
+</RelativeLayout>

@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Catch It!!!</string>
+    <string name="jouer">Jouer</string>
+    <string name="catch_me_if_you_can">Catch Me If You Can!!</string>
+    <string name="game_parameters">GAME PARAMETERS</string>
+    <string name="high_score">HIGH SCORE</string>
+    <string name="quit">QUIT</string>
+    <string name="textScore">...</string>
+    <string name="username_score_date_hunter">UserName - score - date - hunter</string>
+    <string name="target">Target :</string>
+    <string name="name">...</string>
+    <string name="hunter">Hunter :</string>
+    <string name="result">Result :</string>
+    <string name="sound">Sound :</string>
+    <string name="save">Save</string>
+    <string-array name="soundArray">
+        <item>bip</item>
+        <item>hurt</item>
+    </string-array>
+    <string-array name="typeArray">
+        <item>cat</item>
+        <item>blood</item>
+        <item>jail</item>
+        <item>police</item>
+        <item>thief</item>
+    </string-array>
+
+</resources>
