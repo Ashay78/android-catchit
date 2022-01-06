@@ -30,19 +30,15 @@ public class MonJeux extends View implements SensorEventListener
     SensorManager mgr;
 
     Jeux d;
-    Paint hunterPaint, targetPaint, resultPaint, pointRouge, pointVert, image;
+    Paint image;
     float currentX,currentY;
 
-    // liste des cercles rouges
     ArrayList<Point> pointsResultList;
 
-    // position du cercle vert
     Point pointTarget;
     float rayon = 60;
     boolean existe = false ;
     int score = 0;
-    public final static String SCORE = "score";
-    private Drawable mCustomImage;
     private Bitmap bitmapJail;
     private Bitmap bitmapThief;
     private Bitmap bitmapBlood;
@@ -73,21 +69,6 @@ public class MonJeux extends View implements SensorEventListener
         super(context, attrs);
     }
 
-    public MonJeux(Context context, String name, String targer, String hunter, String result, String sound, String bestScore) {
-        super(context);
-
-        this.setFocusable(true);
-        this.init();
-
-
-        this.name   = name;
-        this.target = targer;
-        this.hunter = hunter;
-        this.result = result;
-        this.sound  = sound;
-//        soundPlayer = MediaPlayer.create(context, R.raw.dog);
-    }
-
     public void setParams(String name, String targer, String hunter, String result, String sound, TextView textView) {
         this.setFocusable(true);
         this.init();
@@ -99,16 +80,9 @@ public class MonJeux extends View implements SensorEventListener
         this.hunter = hunter;
         this.result = result;
         this.sound  = sound;
-
+        // soundPlayer = MediaPlayer.create(context, R.raw.dog);
     }
 
-    /**
-     * Methode qui récupère la taille de la fenetre et qui permet de placer le lieux de départ du joueur
-     * @param w
-     * @param h
-     * @param oldw
-     * @param oldh
-     */
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
@@ -117,10 +91,6 @@ public class MonJeux extends View implements SensorEventListener
         currentY = h / 2;
     }
 
-    /**
-     * Methode qui gère l'affichage
-     * @param canvas
-     */
     @Override
     public void onDraw(Canvas canvas) {
 
@@ -148,6 +118,11 @@ public class MonJeux extends View implements SensorEventListener
 
     }
 
+    /**
+     * Set image
+     * @param type
+     * @return
+     */
     public Bitmap getBitmap(String type) {
         switch (type) {
             case "jail":
@@ -165,9 +140,8 @@ public class MonJeux extends View implements SensorEventListener
         }
     }
 
-
     /**
-     * Methode qui initilise les cercle lors du lancement du jeux
+     * Create target point
      */
     private void nouveau(){
         Point p;
@@ -182,7 +156,7 @@ public class MonJeux extends View implements SensorEventListener
     }
 
     /**
-     * Methode qui attibut les couleur le role de chaque cercle
+     * Init image
      */
     private void init() {
         pointsResultList = new ArrayList<Point>();
@@ -200,9 +174,8 @@ public class MonJeux extends View implements SensorEventListener
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
 
-
     /**
-     * Methode qui récupere la position de la balle avec l'accélérometre
+     * Movement of the player
      * @param event
      */
     @Override
@@ -215,8 +188,7 @@ public class MonJeux extends View implements SensorEventListener
     }
 
     /**
-     * Methode qui vérie que le joueur ne sorte pas du cadre du téléphone
-     * et vérie si le joueur rencontre un cercle vert ou rouge
+     * Check if player is on target or in result
      * @param x
      * @param y
      */
@@ -240,7 +212,7 @@ public class MonJeux extends View implements SensorEventListener
             currentY = getHeight() - 10;
         }
 
-
+        // If touch the result
         if( touchResult((int) currentX,(int) currentY ) ){
             if (!this.isInvincible) {
                 Activity activity = (Activity)getContext();
@@ -254,7 +226,7 @@ public class MonJeux extends View implements SensorEventListener
             this.isInvincible = false;
         }
 
-
+        // If touche the target
         if( touchTarget( (int) currentX,(int) currentY ) ) {
             pointsResultList.add(this.pointTarget);
 
@@ -271,25 +243,25 @@ public class MonJeux extends View implements SensorEventListener
     }
 
     /**
-     * Methode qui retourne un boulean si oui ou non le joueur est sur un cercle rouge
+     * Check if target touch result
      * @param x
      * @param y
      * @return
      */
     private boolean touchResult(int x, int y) {
-        boolean surPointRouge = false;
+        boolean onResult = false;
         int index = 0;
-        while( !surPointRouge && ( index < pointsResultList.size() ) ) {
+        while( !onResult && ( index < pointsResultList.size() ) ) {
             if( distance( x,y, pointsResultList.get(index) ) <= rayon )
-                surPointRouge = true;
+                onResult = true;
             else
                 index++;
         }
-        return surPointRouge;
+        return onResult;
     }
 
     /**
-     * Methode qui retourne un boulean si oui ou non le joueur est sur un cercle vert
+     * check if user touch target
      * @param x
      * @param y
      * @return
@@ -302,7 +274,7 @@ public class MonJeux extends View implements SensorEventListener
     }
 
     /**
-     * Methode qui calcul la distance entre deux point
+     * calculate the distance
      * @param x
      * @param y
      * @param p

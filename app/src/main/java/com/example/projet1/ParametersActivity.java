@@ -56,6 +56,9 @@ public class ParametersActivity extends AppCompatActivity {
         this.finish();
     }
 
+    /**
+     * Load parameters
+     */
     private void loadGameSetting()  {
         SharedPreferences sharedPreferences= this.getSharedPreferences("gameSetting", Context.MODE_PRIVATE);
 
@@ -92,6 +95,10 @@ public class ParametersActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Save parameter
+     * @param view
+     */
     public void doSave(View view)  {
         SharedPreferences sharedPreferences = this.getSharedPreferences("gameSetting", Context.MODE_PRIVATE);
 

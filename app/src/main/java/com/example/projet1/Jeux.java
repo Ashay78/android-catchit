@@ -51,18 +51,12 @@ public class Jeux extends AppCompatActivity {
         mgr = (SensorManager) getSystemService( SENSOR_SERVICE );
     }
 
-    /**
-     * methode pour lancer l'applicarion quand elle revient en premier plan
-     */
     @Override
     protected void onResume() {
         super.onResume();
         mgr.registerListener( monJeux , mgr.getDefaultSensor( Sensor. TYPE_ACCELEROMETER ) , mgr.SENSOR_DELAY_GAME);
     }
 
-    /**
-     * methode pour mettre en pause quand l'application n'est pas en premier plan
-     */
     @Override
     protected void onPause() {
         super.onPause();

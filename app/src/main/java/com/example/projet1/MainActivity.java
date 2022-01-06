@@ -34,14 +34,16 @@ public class MainActivity extends AppCompatActivity {
     private String result;
     private String sound;
 
-    String TAG = "TEST";
     JSONObject jsonScore;
     ArrayList<Score> scoreArrayList = new ArrayList<Score>();
 
     private String resultScore = null;
 
 
-
+    /**
+     * Create activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
         this.loadGameSetting();
     }
 
+    /**
+     * When user turn screen save instance
+     * @param savedInstanceState
+     */
     @Override
     public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
         savedInstanceState.putString("username", this.name);
@@ -60,6 +66,10 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(savedInstanceState);
     }
 
+    /**
+     * Restore instance when user turn screen restore instance
+     * @param savedInstanceState
+     */
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         String playerName = savedInstanceState.getString("username");
@@ -74,14 +84,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+    /**
+     * When user start game activity
+     * Get parameter en give their to the game activity
+     * @param v
+     */
     public void startGame(View v) {
         ListView listView = (ListView)findViewById(R.id.listView);
 
         SharedPreferences sharedPreferences= this.getSharedPreferences("gameScore6", Context.MODE_PRIVATE);
 
         String strJson = sharedPreferences.getString("jsondata","0");//second parameter is necessary ie.,Value to return if this preference does not exist.
-        Log.e(TAG, strJson);
         if (strJson != null) {
             try {
                 this.jsonScore = new JSONObject(strJson);
@@ -100,31 +113,45 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intentJeux = new Intent(this, Jeux.class);
         Bundle b = new Bundle();
-        b.putString("name", name); //Your id
-        b.putString("targer", targer); //Your id
-        b.putString("hunter", hunter); //Your id
-        b.putString("result", result); //Your id
-        b.putString("sound", sound); //Your id
-        b.putString("bestScore", scoreArrayList.get(0).getScore()); //Your id
+        b.putString("name", name);
+        b.putString("targer", targer);
+        b.putString("hunter", hunter);
+        b.putString("result", result);
+        b.putString("sound", sound);
+        b.putString("bestScore", scoreArrayList.get(0).getScore());
         intentJeux.putExtras(b);
         startActivityForResult(intentJeux, LAUNCH_GAME);
     }
 
-
+    /**
+     * Start activity
+     * @param v
+     */
     public void startParameters(View v) {
         Intent intentParameters = new Intent(this, ParametersActivity.class);
         startActivityForResult(intentParameters, LAUNCH_PARAMETERS);
     }
 
+    /**
+     * Start HighScore activity
+     * @param v
+     */
     public void startHighScore(View v) {
         Intent intentHighScore = new Intent(this, HighScoreActivity.class);
         startActivityForResult(intentHighScore, LAUNCH_PARAMETERS);
     }
 
+    /**
+     * Exit application
+     * @param v
+     */
     public void quit(View v) {
         this.finish();
     }
 
+    /**
+     * Load game setting
+     */
     private void loadGameSetting()  {
         SharedPreferences sharedPreferences= this.getSharedPreferences("gameSetting", Context.MODE_PRIVATE);
 
@@ -140,6 +167,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Function call when activity stop with result
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -161,6 +194,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Save score in the shared preferenced.
+     * Score are save in json serialize
+     * @param score
+     */
     public void saveScore(String score) {
         SharedPreferences sharedPreferences= this.getSharedPreferences("gameScore6", Context.MODE_PRIVATE);
 
@@ -190,6 +228,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Parse the score in the json
+     * @param allGame
+     * @param score
+     * @return
+     */
     private String scoreJsonParse(JSONArray allGame, String score) {
 
         JSONObject game = new JSONObject();
